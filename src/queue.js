@@ -13,19 +13,37 @@ const { NotImplementedError } = require('../lib/errors');
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 class Queue {
+  constructor () {
+    this.root = null;
+  }
   getUnderlyingList() {
     // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+    return this.root;
   }
 
-  enqueue(/* value */) {
+  enqueue(value) {
     // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+    const newNode = { value, next: null };
+
+    if (!this.root) {
+      this.root = newNode;
+      return;
+    }
+
+    let current = this.root;
+    while (current.next) {
+      current = current.next;
+    }
+
+    current.next = newNode;
   }
 
   dequeue() {
+    if (!this.root) return;
     // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+    const result = this.root.value;
+    this.root = this.root.next;
+    return result;
   }
 }
 
